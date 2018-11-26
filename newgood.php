@@ -1,9 +1,10 @@
 <?php
 /**
  * @authors ShenYan (52o@qq52o.cn)
- * @date    2018-11-26 13:35:41
+ * @date    2018-11-26 14:58:49
  * @boke    https://qq52o.me
  */
+
 // 获取验证secret和url 增加权限判断 防止泄露
 $getSecret = isset($_REQUEST['secret']) ? $_REQUEST['secret'] : '';
 $getUrl = isset($_REQUEST['url']) ? $_REQUEST['url'] : '';
@@ -21,8 +22,6 @@ if ($getSecret != $secret) {
 	return http_response_code(403);
 }
 
-// 配置信息见：https://ziyuan.baidu.com/xzh/home/index
-
 // 配置 appid
 $appid = '';
 
@@ -39,32 +38,15 @@ if (!$token) {
 	exit;
 }
 
-$html = file_get_contents($getUrl);
-
-$dom = new DOMDocument();
-// 从一个字符串加载HTML
-@$dom->loadHTML($html);
-// 使该HTML规范化
-$dom->normalize();
-
-// 用DOMXpath加载DOM，用于查询
-$xpath = new DOMXPath($dom);
-// 获取对应的xpath数据
-$hrefs = $xpath->query("//script[@type='application/ld+json']/text()");
-for ($i = 0; $i < $hrefs->length; $i++) {
-	$href = $hrefs->item($i);
-	$json = $href->nodeValue;
-}
-
 // api接口
-$api = 'http://data.zz.baidu.com/ping?appid=' . $appid . '&token=' . $token . '&type=xzhome';
+$api = 'http://data.zz.baidu.com/urls?appid=' . $appid . '&token=' . $token . '&type=newgood';
 
 $ch = curl_init();
 $options = array(
 	CURLOPT_URL => $api,
 	CURLOPT_POST => true,
 	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_POSTFIELDS => $json,
+	CURLOPT_POSTFIELDS => implode("\n", $getUrl),
 	CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
 );
 curl_setopt_array($ch, $options);
