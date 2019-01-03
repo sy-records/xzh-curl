@@ -1,5 +1,10 @@
 # xzh-curl
+
 :panda_face:针对百度熊掌号新接口请求封装（号主页展现、春笋计划优站扶持）
+
+熊掌号项目已凉，号主页站点资讯存量内容会展示在更多tab下，新提交的不再进入
+
+小时、天级、周级收录都还在，之前获得的权益也都保留，功能都在资源平台-移动专区
 
 ## 文件说明
 
@@ -74,11 +79,3 @@ secret = test
 ## 开源协议
 
 [Apache-2.0](https://github.com/sy-records/xzh-curl/blob/master/LICENSE) 
-
-## 赞赏
-
-若对您有帮助，可以赞助或者点击`star`支持下作者哦，谢谢！
-
-<p align="center">
-    <img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsv8nvbc0qj30m80hq425.jpg" width="500px">
-</p>
